@@ -1,0 +1,50 @@
+name: Tests
+
+env:
+  PGHOST: localhost
+  PGPORT: 5432
+  PGUSER: postgres
+  PGPASSWORD: postgres
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  container:
+    runs-on: ubuntu-20.04
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node v14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Update npm
+      run: npm install -g npm@latest
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Setup
+      run: npm run setup
+
+    - name: Run Unit Tests
+      run: npm test

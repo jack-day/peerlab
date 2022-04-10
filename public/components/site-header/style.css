@@ -1,0 +1,118 @@
+@import url('/css/main.css');
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5em;
+    padding: 0 6%;
+    background-color: var(--primary);
+}
+
+header > #logo,
+header > nav {
+    display: flex;
+    align-items: center;
+    color: var(--primary-fg);
+}
+
+a {
+    color: var(--primary-fg);
+    transition: opacity .3s ease;
+}
+
+a:hover {
+    opacity: .7;
+}
+
+
+/* ------ Logo ------ */
+#logo svg {
+    width: 3rem;
+    fill: var(--secondary);
+}
+
+#logo h1 {
+    margin: 0 0 0 .3em;
+    font-size: 2rem;
+}
+
+
+/* ------ Sign In  ------ */
+nav.signin {
+    justify-content: flex-end;
+}
+
+#signin-btn {
+    background-color: var(--secondary);
+    color: var(--secondary-fg);
+    transition:
+        opacity .3s ease,
+        color .3s ease,
+        background-color .3s ease;
+}
+
+#signin-btn:hover {
+    box-shadow: none;
+    opacity: .7;
+}
+
+#signin-btn.loading {
+    background-color: white;
+    color: transparent;
+    cursor: default;
+    transition: unset;
+    animation: loading 1s ease infinite;
+}
+
+#signin-btn.loading:hover {
+    background-color: white;
+    opacity: 1;
+}
+
+@keyframes loading {
+    0% { opacity: 1; }
+    50% { opacity: .7; }
+    100% { opacity: 1; }
+}
+
+#signin-btn.error {
+    background-color: var(--error);
+    color: var(--error-fg);
+}
+
+@media only screen and (max-width: 767px) {
+    #signin-btn.error {
+        padding: .6em .75em;
+    }
+}
+
+
+/* ------ Nav ------ */
+nav a {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+nav a:not(:last-child) {
+    margin-right: 1.5em;
+}
+
+#profile-img {
+    width: 2em;
+    height: 2em;
+    object-fit: cover;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+nav > .notice.error {
+    background-color: rgba(255, 0, 0, .4);
+}
+
+@media (prefers-color-scheme: dark) {
+    nav > .notice.error {
+        background-color: rgb(255 0 0 / 60%);
+        color: white;
+    }
+}

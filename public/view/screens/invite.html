@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeerLab - View Invite</title>
+    <link href="/assets/img/logo.svg" rel="icon">
+    <link href="/view/css/invite.css" rel="stylesheet">
+    <script src="/components/site-header/index.js" type="module"></script>
+    <script src="/components/async.js" type="module"></script>
+    <script src="/view/js/invite.js" type="module"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <await-async>
+        <main>
+            <p id="invite-allows">This invite allows you to join</p>
+            <img id="avatar">
+            <h1 id="name"></h1>
+            <div class="chip-container">
+                <p id="members" class="chip"></p>
+                <p id="assignments" class="chip"></p>
+            </div>
+            <a id="accept-btn-link">
+                <button id="accept-btn">Accept Invite</button>
+            </a>
+        </main>
+    </await-async>
+</body>

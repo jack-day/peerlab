@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeerLab - Classes</title>
+    <link href="/assets/img/logo.svg" rel="icon">
+    <link href="css/classes.css" rel="stylesheet">
+    <script src="/components/site-header/index.js" type="module"></script>
+    <script src="/components/async.js" type="module"></script>
+    <script src="/components/masonry-grid.js" type="module"></script>
+    <script src="js/classes.js" type="module"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <await-async>
+        <main>
+            <header>
+                <h1>Classes</h1>
+                <a href="/new/class">
+                    <button>+ NEW CLASS</button>
+                </a>
+            </header>
+            <masonry-grid id="classes" data-columns="2"></masonry-grid>
+        </main>
+    </await-async>
+</body>

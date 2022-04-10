@@ -1,0 +1,188 @@
+paths:
+  /work/{work}/reviews:
+    get:
+      summary: Get all reviews on a work submission
+      tags:
+        - reviews
+      parameters:
+        - in: path
+          name: work
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of work submission
+      responses:
+        '200':
+          description: Array of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '404':
+          description: Work submission doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+    post:
+      summary: Create a new peer review
+      tags:
+        - reviews
+      parameters:
+        - in: path
+          name: work
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of work submission
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - rating
+                - feedback
+              properties:
+                rating:
+                  type: integer
+                  minimum: 0
+                feedback:
+                  type: string
+      responses:
+        '201':
+          description: Review created
+        '400':
+          description: Invalid Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        '404':
+          description: Work submission doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+  /work/{work}/reviews/{reviewer}/likes:
+    put:
+      summary: Add a like to a review
+      tags:
+        - reviews
+      parameters:
+        - in: path
+          name: work
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of work submission
+        - in: path
+          name: reviewer
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of reviewer
+      responses:
+        '200':
+          description: Like added successfully
+        '404':
+          description: Review doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+    delete:
+      summary: Delete a like from a review
+      tags:
+        - reviews
+      parameters:
+        - in: path
+          name: work
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of work submission
+        - in: path
+          name: user
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of reviewer
+      responses:
+        '200':
+          description: Like deleted successfully
+        '404':
+          description: Review doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+  /work/{work}/reviews/{reviewer}/dislikes:
+    put:
+      summary: Add a dislike to a review
+      tags:
+        - reviews
+      parameters:
+        - in: path
+          name: work
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of work submission
+        - in: path
+          name: reviewer
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of reviewer
+      responses:
+        '200':
+          description: Dislike added successfully
+        '404':
+          description: Review doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+    delete:
+      summary: Delete a dislike from a review
+      tags:
+        - reviews
+      parameters:
+        - in: path
+          name: work
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of work submission
+        - in: path
+          name: user
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of reviewer
+      responses:
+        '200':
+          description: Dislike deleted successfully
+        '404':
+          description: Review doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+components:
+  schemas:
+    Review:
+      type: object
+      required:
+        - user
+        - rating
+        - feedback
+        - createTime
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        rating:
+          type: integer
+        feedback:
+          type: string
+        liked:
+          type: boolean
+        createTime:
+          type: string
+          format: date-time

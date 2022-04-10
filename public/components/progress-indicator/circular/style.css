@@ -1,0 +1,37 @@
+@import url('/css/main.css');
+
+circle {
+    fill: transparent;
+    stroke: var(--primary);
+    stroke-width: .25rem;
+    stroke-dasharray: 150;
+    stroke-dashoffset: 50;
+    transform-origin: 50% 50%;
+    animation: spin 1.25s linear infinite, load 3.75s ease infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes load {
+    0% {
+        stroke-dashoffset: 140;
+    }
+
+    25% { stroke-dashoffset: 50; }
+    30% { stroke-dashoffset: 50; }
+    50% { stroke-dashoffset: 140; }
+    75% { stroke-dashoffset: 50; }
+    80% { stroke-dashoffset: 50; }
+
+    100% {
+        stroke-dashoffset: 140;
+    }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeerLab - View Assignment</title>
+    <link href="/assets/img/logo.svg" rel="icon">
+    <link href="/view/css/assignment.css" rel="stylesheet">
+    <script src="/components/site-header/index.js" type="module"></script>
+    <script src="/components/async.js" type="module"></script>
+    <script src="/components/tabs.js" type="module"></script>
+    <script src="/components/site-dialog.js" type="module"></script>
+    <script src="/view/js/assignment.js" type="module"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <await-async>
+        <main>
+            <section id="details" class="content-width">
+                <h1 id="name"></h2>
+                <h2 id="short-name" class="subtitle"></h2>
+                <p id="deadline"></p>
+                <p id="reviews-deadline"></p>
+                <p id="description"></p>
+            </section>
+            <fixed-tabs>
+                <section id="work" data-tab="work">
+                    <form id="work-form" data-tab="work">
+                        <h2>Submit Your Work</h2>
+                        <fieldset id="type" class="radios">
+                            <legend>Type</legend>
+                            <label>URL
+                                <input name="type" type="radio" value="url" checked>
+                            </label>
+                            <label>PDF
+                                <input name="type" type="radio" value="pdf">
+                            </label>
+                        </fieldset>
+                        <label id="url-label">URL
+                            <input id="url" type="text">
+                        </label>
+                        <label id="pdf-label" class="hide">PDF
+                            <input id="pdf" type="file" accept=".pdf" data-skip="true">
+                        </label>
+                        <button id="submit-btn" type="button">Submit</button>
+                    </form>
+                    <section id="submission" class="hide">
+                        <h2>Your Submission</h2>
+                        <p id="upload-time"></p>
+                        <a id="submission-link" href="#" target="_blank"></a>
+                    </section>
+                </section>
+                <section id="feedback" data-tab="feedback"></section>
+                <section data-tab="review">
+                    <section id="review">
+                        <h2>Peer Review</h2>
+                        <a id="review-btn">
+                            <button>Review a Peer</button>
+                        </a>
+                    </section>
+                </section>
+                <section data-tab="settings">
+                    <form id="settings">
+                        <h2>Update Assignment</h2>
+                        <label>Assignment Name
+                            <input id="asgmnt-name-input" type="text" autocomplete="off">
+                        </label>
+                        <label>Short Name
+                            <input id="short-name-input" type="text" aria-label="Short Name">
+                            <p>Must be lowercase and spaces replaced with hyphens ' - ', for example: 'short-name'</p>
+                        </label> 
+                        <label>Description
+                            <textarea id="description-input" rows="3" data-optional></textarea>
+                        </label>
+                        <fieldset id="anonymous-input" class="radios">
+                            <legend>Anonymous</legend> 
+                            <label>Yes
+                                <input name="anonymous" type="radio" value="true">
+                            </label>
+                            <label>No
+                                <input name="anonymous" type="radio" value="false">
+                            </label>
+                        </fieldset>
+                        <label>Minimum Reviews
+                            <input id="min-reviews-input" type="number">
+                        </label>
+                        <label>Review Max Rating
+                            <input id="rating-max-input" type="number">
+                        </label>
+                        <label>Deadline 
+                            <input id="deadline-input" type="datetime-local" data-optional>
+                        </label>
+                        <label>Reviews Deadline
+                            <input id="reviews-deadline-input" type="datetime-local" data-optional>
+                        </label>
+                        <button id="save-btn" type="button">Save Changes</button>
+                    </form>
+                    <section>
+                        <h2>Delete Assignment</h2>
+                        <button id="delete-btn" class="delete" type="button">Delete Assignment</button>
+                        <dialog id="delete-dialog" is="site-dialog">
+                            <h2>Delete assignment permanently?</h2>
+                            <p>This cannot be undone. You will delete <span id="delete-dialog-asgmnt-name"></span> and all of it's work submissions and reviews forever.</p>
+                            <p>Are you sure you want to <span class="error">permanently delete</span> this assignment?</p>
+                            <button id="delete-dialog-btn" class="delete">Yes, Delete It</button>
+                        </dialog>
+                    </section>
+                </section>
+            </fixed-tabs>
+        </main>
+    </await-async>
+</body>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeerLab - New Class</title>
+    <link href="/assets/img/logo.svg" rel="icon">
+    <link href="css/class.css" rel="stylesheet">
+    <script src="/components/site-header/index.js" type="module"></script>
+    <script src="/components/async.js" type="module"></script>
+    <script src="js/class.js" type="module"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <await-async>
+        <form>
+            <h1>Create a new class</h1>
+            <label>Class Name
+                <input id="class-name" type="text" autocomplete="off">
+            </label>
+            <label>Short Name
+                <input id="short-name" type="text" aria-label="Short Name">
+                <p>Must be lowercase and spaces replaced with hyphens ' - ', for example: 'short-name'</p>
+            </label>
+            <label>Description
+                <textarea id="description" rows="3" data-optional></textarea>
+            </label>
+            <button id="create-btn" type="button">Create class</button>
+        </form>
+    </await-async>
+</body>

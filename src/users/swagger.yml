@@ -1,0 +1,196 @@
+paths:
+  /users:
+    post:
+      summary: Create a new User
+      description: Creates a new User using values from the user's Google OAuth 2.0 profile retrieved through authentication.
+      tags:
+        - users
+      responses:
+        '201':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+                description: User UUID
+        '400':
+          description: Invalid Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        $import: swagger/responses.yml
+  /users/{user}:
+    get:
+      summary: Get a user
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: user
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of user
+      responses:
+        '200':
+          description: User data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        $import: swagger/responses.yml
+  /me:
+    get:
+      summary: Get the currently authenticated user
+      tags:
+        - users
+      responses:
+        '200':
+          description: Currently authenticated user's data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Me'
+        $import: swagger/responses.yml
+    put:
+      summary: Update the currently authenticated user
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - firstName
+                - lastName
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Invalid Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        $import: swagger/responses.yml
+    delete:
+      summary: Delete the authenticated user
+      tags:
+        - users
+      responses:
+        '200':
+          description: Authenticated user deleted successfully
+        $import: swagger/responses.yml
+  /me/registered:
+    get:
+      summary: Check if the authenticated user is registered
+      tags:
+        - users
+      responses:
+        '200':
+          description: Authenticated user is registered
+        '204':
+          description: Authenticated user is not registered
+        $import: swagger/responses.yml
+  /me/avatar:
+    get:
+      summary: Get the currently authenticated user's avatar
+      tags:
+        - users
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Avatar URL
+        $import: swagger/responses.yml
+    put:
+      summary: Upload an avatar for the currently authenticated user
+      tags:
+        - users
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: base64
+      responses:
+        '200':
+          description: Avatar updated
+        '400':
+          description: Invalid file upload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        $import: swagger/responses.yml
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - uuid
+        - firstName
+        - lastName
+        - avatarUrl
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        avatarUrl:
+          type: string
+    Me:
+      allOf:
+        - $ref: '#/components/schemas/User'
+        - type: object
+          required:
+            - assignmentsCompleted
+            - assignmentCount
+            - averageFeedbackRating
+            - reviewsCompleted
+            - reviewLikeRatio
+          properties:
+            assignmentsCompleted:
+              type: number
+              description: Number of assignments the user has completed
+            assignmentCount:
+              type: number
+              description: Number of assignments the user has assigned to them
+            averageFeedbackRating:
+              type: number
+              description: Average feedback rating received from peers in decimal percentage
+            reviewsCompleted:
+              type: number
+              description: Number of reviews the user has completed
+            totalMinReviews:
+              type: number
+              description: Total minimum reviews the user needs to complete across all assignments
+            totalReviewLikes:
+              type: number
+              description: Total likes across all of the user's reviews
+            totalReviewDislikes:
+              type: number
+              description: Total dislikes across all of the user's reviews

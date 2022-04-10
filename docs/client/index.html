@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>AppEng Coursework</h1>
+<h2>About This Repository</h2>
+<p>Use this GitHub repository for managing the development of your AppEng coursework.
+At the formative and summative deadlines, we will use the contents of the repository to give you feedback and to assess your work.
+Push your local copy regularly (and when it's time for submission).</p>
+<h2>The Task</h2>
+<p>Everything you have to do is in the <a href="https://docs.google.com/document/d/1KNq3Px8Tb8jbYcLfJLNOJRX8RtqPapvV4_B6vzDoJCc">Coursework Spec</a>.</p>
+<h1>Submissions</h1>
+<h2>Formative Submission</h2>
+<p>Design documentation files can be found in the <a href="docs/formative-submission">docs/formative-submission</a> folder and the pre-recorded video can be found <a href="https://youtu.be/W0rBenLF7PI">here</a>.</p>
+<h2>Final Submission</h2>
+<h2>Reflection</h2>
+<h3>Formative Submission Redesign</h3>
+<p>After the formative submission, I decided to redo the design and plan for the
+system. The initial design was a more open approach that allowed users to upload
+work, give it a topic and let others review work from specific topics. However I
+didn't feel this reflected what the specification was asking for, as the system
+was meant to be directed towards university students. So I decided to redesign
+the system, opting to include classes and assignments and have where users
+review their peer's work within each assignment. The docs for the redesign can
+be found <a href="/tree/2c09f951b369c04e0126d89c4641b882631aec21/docs">here</a>.</p>
+<h3>Initial Design and Final Design Differences</h3>
+<p>Unfortunately, when initially designing the system, I overestimated the scope of
+the project. I did not take into account the fact I was using TypeScript for
+the first time and I was going to be attempt unit testing for the second
+time. These of course took time to learn that I did not factor for. As a result
+I had to cut some major features from the project, which were the class
+teachers, statistical reviews (custom review questions) and viewing of other
+user profiles. However, the project still meets the requirements set by the
+specification.</p>
+<p>The initial API design did not differ largely from the final API, but the final
+API does include many more paths. The major differences are that the
+<code>/users/{uuid}/work</code>, <code>/users/{uuid}/reviews</code>, <code>/user/{uuid}/work</code> and
+<code>/user/{uuid}/reviews</code> paths are not present in the final API. The <code>/user</code> path
+is renamed to <code>/me</code> and finally, the paths that include
+<code>/class/{class}/assignments/{assignment}/work</code> now only use <code>/work</code> to reduce
+the maximum nesting depth. There were more less significant changes to the API.</p>
+<h3>Development Experience</h3>
+<h4>TypeScript</h4>
+<p>When I initially started using TypeScript on the project, I did not enjoy it. It
+was difficult to set up and I felt overwhelmed by the amount of type defining I
+needed to do. However, as I got better at using it, learnt more efficient
+methods and used type inference where possible, I enjoyed it a lot more. I still
+feel that it is difficult to set up, but I think that may get easier the more I
+use it and the more it is supported. I found it incredibly helpful when
+programming and I will definitely use it in future projects.</p>
+<p>I chose to use TypeScript only on the server and use plain JavaScript on the
+client as I felt using it on the client may be too time-consuming due to the
+volatile nature of DOM interaction. I think this was a great choice, I feel
+using TypeScript on the client would be too much effort for too little gain
+and due to me overestimating scope, I would have needed to cut more features. I
+feel it would be useful with client frameworks, but for DOM interaction I think
+it will be too heavy-handed. My opinion may change in the future as I have yet
+to actually use TypeScript on the client.</p>
+<h4>Unit Testing</h4>
+<p>Unit testing the largest downfall in the project. I spent too much time trying
+to smartly develop a system to dynamically generate mock data. Which in
+hindsight, should not have been implemented and I should have instead manually
+tested specific values already inserted into the test database. As a result of
+this, I stopped unit tests early on in development as it was taking too much
+time to create tests and was becoming too complex.</p>
+<h4>Web Components</h4>
+<p>This was my first time using web components on the client and they were
+incredibly useful. I set the html for the web component within the JavaScript
+by creating a template element and setting it's innerHTML, this was great as
+it provided a fully modularised component. I found web components took away a
+lot of duplicate code and gave more opportunities to be creative with the DOM,
+which was brilliant. I will be using web components in my future projects and
+have already started implementing them in some ongoing ones.</p>
+<h4>Documentation</h4>
+<p>I used JSDoc, TypeDoc, Swagger and Madge for my documentation. JSDoc and TypeDoc
+were incredibly useful during development as I could add descriptions to my code
+that would be picked up and shown to me using VS Code's IntelliSense. However,
+I did not use the generated docs nearly at all, but I feel this is because I
+was already getting the benefit through IntelliSense. Swagger was remarkable, I
+spent a large portion of my time during development in the swagger interface
+testing my API and checking my API and it has saved a significant amount of
+project development hours. Madge was also brilliant for easily generating
+a simple module diagram that allowed me to visualise the system's modules better
+and spot any circular dependencies. I will certainly be using all of these
+documentation methods in the future.</p>
+<h4>File Structure</h4>
+<p>The folder-by-feature structure I chose was good and didn't cause any issues
+during development. However I'm not entirely happy with it, I think it could be
+improved by including sub-folders for each component layer, such as /api,
+/services and /db, which would allow for better and more modularisation.</p>
+<h4>Resource Naming</h4>
+<p>Finally, I feel that my resources could have been named better. I didn't give
+this a large amount of thought initially and it was too late in development
+to implement new resource names. I think renaming classes to cohorts would
+better suit it's role and also stop issues with class being a reserved keyword.
+I would also rename work to submissions as the ambiguity of work being both
+singular and plural is not great for RESTful API paths and programming.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_async.html">components/async</a></li><li><a href="module-components_better-element.html">components/better-element</a></li><li><a href="module-components_cards_assignment_index.html">components/cards/assignment/index</a></li><li><a href="module-components_masonry-grid.html">components/masonry-grid</a></li><li><a href="module-components_review_index.html">components/review/index</a></li><li><a href="module-components_site-header_index.html">components/site-header/index</a></li><li><a href="module-components_tabs.html">components/tabs</a></li><li><a href="module-js_modules_animate.html">js/modules/animate</a></li><li><a href="module-js_modules_dom.html">js/modules/dom</a></li><li><a href="module-js_modules_forms.html">js/modules/forms</a></li><li><a href="module-js_modules_gapi.html">js/modules/gapi</a></li><li><a href="module-js_modules_validation_core.html">js/modules/validation/core</a></li><li><a href="module-js_modules_validation_index.html">js/modules/validation/index</a></li><li><a href="module-js_profile.html">js/profile</a></li><li><a href="module-js_swagger.html">js/swagger</a></li><li><a href="module-view_js_assignment.html">view/js/assignment</a></li><li><a href="module-view_js_class.html">view/js/class</a></li><li><a href="module-view_js_new-asgmnt.html">view/js/new-asgmnt</a></li><li><a href="module-view_js_peer-review.html">view/js/peer-review</a></li></ul><h3>Classes</h3><ul><li><a href="module-components_async.html">components/async</a></li><li><a href="module-components_better-element.html">components/better-element</a></li><li><a href="module-components_masonry-grid.html">components/masonry-grid</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

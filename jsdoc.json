@@ -1,0 +1,17 @@
+{
+  "plugins": ["plugins/markdown"],
+  "source": {
+    "include": ["public"]
+  },
+  "templates": {
+    "default": {
+        "includeDate": false,
+        "outputSourceFiles": false
+    }
+  },
+  "opts": {
+      "destination": "docs/client",
+      "readme": "README.md",
+      "recurse": true
+  }
+}

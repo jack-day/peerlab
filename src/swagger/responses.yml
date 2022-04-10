@@ -1,0 +1,4 @@
+'401':
+  description: Request is not authenticated
+'500':
+  description: Server Error

@@ -1,0 +1,172 @@
+@import url('main.css');
+
+/* ---- Hero ---- */
+#hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 5em);
+    padding: 0 6%;
+    background: url('/assets/img/hero.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+#hero::before,
+#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--overlay);
+    opacity: .5;
+}
+
+#hero::after {
+    background: black;
+    opacity: .15;
+}
+
+#hero > section {
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+
+#hero > section > h1 {
+    margin: 0;
+}
+
+#scroll-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 1.5em;
+    transform: translateX(-50%);
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    filter: invert(100%);
+    z-index: 1;
+    transition: bottom .3s ease;
+}
+
+#scroll-btn:hover {
+    bottom: 1em;
+}
+
+.sign-in-btn {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: 2em;
+    cursor: pointer;
+}
+
+.sign-in-btn > img {
+    width: 2.75em;
+    padding: .6em;
+    background-color: white;
+    border: 2px solid var(--primary);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition: border-color .3s ease;
+}
+
+.sign-in-btn > button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--primary);
+    color: var(--primary-fg);
+    transition: box-shadow .3s ease, background-color .3s ease, color .3s ease;
+}
+
+.sign-in-btn.error > img {
+    border-color: var(--error);
+}
+
+.sign-in-btn.error > button {
+    background-color: var(--error);
+    color: var(--error-fg);
+}
+
+
+/* ---- Content ---- */
+main {
+    position: relative;
+}
+
+main::before {
+    content: '';
+    position: absolute;
+    top: 10rem;
+    bottom: 10rem;
+    left: 50%;
+    width: 3px;
+    transform: translateX(-1.5px);
+    background-color: var(--border);
+}
+
+main > section {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--content-width);
+    padding: 7rem 0;
+    margin: 0 auto;
+}
+
+main > section > section {
+    width: 40%;
+}
+
+main > section h2 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+main > section p {
+    margin-bottom: 0;
+    font-size: 1.2em;
+    line-height: 1.65em;
+}
+
+main > section > img {
+    width: 55%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .25);
+}
+
+#last-cta {
+    width: 100%;
+    padding: 10rem 2em;
+    margin: 0 auto;
+    background-color: var(--bg-depth);
+    text-align: center;
+}
+
+#last-cta > h1 {
+    margin: 0;
+}
+
+@media only screen and (max-width: 767px) {
+    main > section {
+        flex-direction: column;
+        padding: 6rem 0;
+    }
+
+    main > section > section {
+        width: 90%;
+        padding: 1em 0;
+        margin-bottom: 2em;
+        background-color: white;
+    }
+
+    main > section > img {
+        order: 2;
+        width: 90%;
+    }
+}

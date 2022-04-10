@@ -1,0 +1,273 @@
+@import url('/css/main.css');
+
+body, await-async, main, fixed-tabs {
+    display: flex;
+    flex-direction: column;
+}
+
+await-async, main, fixed-tabs {
+    flex: 1;
+}
+
+/* ------ Details ------ */
+#details {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#avatar {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#details section {
+    flex: 1;
+    margin-left: 2em;
+}
+
+#details section header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0;
+}
+
+#name {
+    margin: 0 .5em 0 0;
+    word-break: break-word;
+}
+
+#owner {
+    margin: .5rem 0 0;
+}
+
+#short-name {
+    margin: 0;
+}
+
+#description {
+    margin: 1em 0 0 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+@media only screen and (max-width: 767px) {
+    #details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #details section {
+        width: 100%;
+        margin-top: 1em;
+        margin-left: 0;
+    }
+}
+
+
+/* ------ Assignments ------ */
+section[data-tab="assignments"] {
+    flex: 1;
+    background-color: var(--bg-depth);
+}
+
+section[data-tab="assignments"].hide {
+    display: none;
+}
+
+section[data-tab="assignments"][data-disabled="true"] {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#new-assignment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+#new-assignment-btn > button {
+    width: 20em;
+}
+
+#new-assignment > hr {
+    flex: 1;
+    height: 2px;
+    margin-left: 2em;
+    border-style: solid;
+    border-color: var(--border);
+}
+
+#assignments {
+    justify-content: space-between;
+}
+
+#assignments .column {
+    width: calc(50% - 1em);
+}
+
+#assignments assignment-card {
+    display: block;
+    margin-bottom: 2em;
+}
+
+@media only screen and (max-width: 767px) {
+    #new-assignment-btn {
+        width: 100%;
+    }
+
+    section[data-tab="assignments"]:not([data-disabled="true"]) #new-assignment-btn {
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 1.5em;
+    }
+
+    #new-assignment-btn > button {
+        width: 100%;
+    }
+
+    #new-assignment > hr {
+        display: none;
+    }
+
+    section[data-tab="assignments"][data-disabled="true"] .subtitle {
+        margin-top: 0;
+    }
+
+    #assignments .column {
+        width: 100%;
+    }
+}
+
+
+/* ------ Members ------ */
+#members > await-async[data-state="loaded"],
+#invite-members {
+    width: var(--paragraph-width);
+}
+
+#invite-members {
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+#invite-btn {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+#invite-members.show-msg {
+    animation: invite-show-msg .4s ease;
+}
+
+#invite-members.hide-msg {
+    animation: invite-show-msg .4s ease reverse;
+}
+
+@keyframes invite-show-msg {
+    from { padding-bottom: 0; }
+    to { padding-bottom: 4.5rem; }
+}
+
+#invite-members > p.notice.error {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+#invite-dialog h2 {
+    margin-top: 0;
+}
+
+#invite-dialog p {
+    margin: .5rem 0 1rem 0;
+    font-size: .85rem;
+}
+
+#invite-copy-btn {
+    width: 100%;
+}
+
+#remove-member h2 {
+    margin-top: 0;
+}
+
+#remove-member button {
+    width: 100%;
+}
+
+.member {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    margin-bottom: 1em;
+}
+
+.member.hide {
+    display: none;
+}
+
+.member img {
+    width: 3.5em;
+    height: 3.5em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.member h3 {
+    margin: 0 0 0 1em;
+}
+
+.member .chip {
+    margin: 0;
+}
+
+.member .delete-member {
+    width: 2em;
+    height: 2em;
+    filter: var(--svg-text);
+    cursor: pointer;
+    transition: opacity .3s ease;
+}
+
+.member .delete-member:hover {
+    opacity: .7;
+}
+
+
+/* ------ Settings ------ */
+section[data-tab="settings"] > form {
+    margin: 0 0 2em 0;
+}
+
+section[data-tab="settings"] > section {
+    width: var(--paragraph-width);
+}
+
+section[data-tab="settings"] > form > h2,
+section[data-tab="settings"] > section > h2 {
+    margin-top: 0;
+}
+
+#delete-btn {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+#delete-dialog h2 {
+    margin-top: 0;
+}
+
+#delete-dialog-class-name {
+    font-weight: bold;
+}
+
+#delete-dialog-btn {
+    width: 100%;
+    margin-top: .5em;
+}

@@ -1,0 +1,71 @@
+@import url('/css/main.css');
+
+body {
+    background-color: var(--bg-depth);
+}
+
+main {
+    width: var(--content-width);
+    padding: 3rem 0 5rem;
+    margin: 0 auto;
+}
+
+main > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 2em;
+}
+
+main > header h1 {
+    margin: 0;
+}
+
+main > header button {
+    padding: .5em 6em;
+}
+
+@media only screen and (max-width: 767px) {
+    main > header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    main > header > a {
+        width: 100%;
+        padding: 2em 0;
+        border-bottom: 2px solid var(--border);
+    }
+
+    main > header button {
+        width: 100%;
+        padding: .6em 2em;
+    }
+}
+
+main > .subtitle {
+    text-align: center;
+}
+
+#classes {
+    justify-content: space-between;
+}
+
+#classes .column {
+    width: calc(50% - 1em);
+}
+
+#classes class-card {
+    display: block;
+    margin-bottom: 2em;
+}
+
+#classes.empty {
+    justify-content: center;
+}
+
+@media only screen and (max-width: 767px) {
+    #classes .column {
+        width: 100%;
+    }
+}

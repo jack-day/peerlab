@@ -1,0 +1,6 @@
+@import url('/css/main.css');
+
+form {
+    max-width: var(--content-max-width);
+    padding-top: 3rem;
+}

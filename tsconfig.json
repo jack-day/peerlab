@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "target": "es2019",
+      "strictNullChecks": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "allowJs": true,
+      "outDir": "out",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "baseUrl": ".",
+      "paths": {
+          "root/*": ["./*"],
+          "src/*": ["src/*"],
+          "tests/*": ["tests/*"]
+      },
+      "typeRoots": ["./src/@types", "./node_modules/@types"]     
+    },
+    "include": [
+      "./src/",
+      "./tests/"
+    ]
+}

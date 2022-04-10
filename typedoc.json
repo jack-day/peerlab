@@ -1,0 +1,5 @@
+{
+    "entryPoints": ["./src", "./tests"],
+    "out": "docs/server",
+    "gitRemote": ""
+}

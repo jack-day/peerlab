@@ -1,0 +1,86 @@
+@import url('/components/cards/main.css');
+
+#details {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1em;
+}
+
+#details section {
+    flex: 1;
+    margin-left: 1em;
+}
+
+#avatar {
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#details section header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0;
+}
+
+#name {
+    margin: 0 .5em 0 0;
+    word-break: break-word;
+}
+
+#owner {
+    margin: 0;
+}
+
+#short-name {
+    margin: 0;
+}
+
+#description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: .5em 0 0 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+#stats {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+#stats p {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    line-height: 2.5em;
+}
+
+#stats p:not(:last-child) {
+    margin-right: 6%;
+}
+
+#stats p::before {
+    content: '';
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: .5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+#stats #assignments::before {
+    background-image: url('/assets/icons/article.svg');
+    filter: var(--svg-text);
+}
+
+#stats #members::before {
+    background-image: url('/assets/icons/people.svg');
+    filter: var(--svg-text);
+}

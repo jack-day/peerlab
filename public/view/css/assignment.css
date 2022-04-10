@@ -1,0 +1,143 @@
+@import url('/css/main.css');
+
+
+/* ------ Details ------ */
+#details {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#details h1 {
+    margin: 0;
+}
+
+#details .subtitle {
+    margin-top: 0;
+}
+
+#deadline,
+#description {
+    margin: .5em 0 0 0;
+}
+
+#description {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+#reviews-deadline {
+    margin: .5em 0 1em;
+}
+
+#deadline,
+#reviews-deadline,
+#upload-time,
+#submission-link {
+    display: flex;
+    align-items: center;
+}
+
+#deadline::before,
+#reviews-deadline::before,
+#upload-time::before,
+#submission-link::before {
+    content: '';
+    width: 1.25em;
+    height: 1.25em;
+    margin-right: .5em;
+    background: url('') no-repeat center center;
+    background-size: contain;
+    filter: var(--svg-text);
+}
+
+#deadline::before,
+#upload-time::before {
+    background-image: url('/assets/icons/alarm.svg');
+}
+
+#reviews-deadline::before {
+    background-image: url('/assets/icons/local-library.svg');
+}
+
+
+/* ------ Tabs ------ */
+fixed-tabs > section h2 {
+    margin-top: 0;
+}
+
+
+/* ------ Work ------ */
+form {
+    margin: 0;
+}
+
+#submission {
+    width: var(--paragraph-width);
+}
+
+#submission > button {
+    width: 100%;
+    margin-top: 2em;
+}
+
+#submission-link::before {
+    background-image: url('/assets/icons/link.svg');
+    filter: var(--svg-primary);
+}
+
+
+/* ------ Feedback ------ */
+#averages {
+    width: var(--paragraph-width);
+    margin-bottom: 3rem;
+}
+
+#peer-reviews {
+    width: min(calc(var(--paragraph-width) + 10em), 100%);
+}
+
+#peer-reviews > feedback-review {
+    display: block;
+    margin-bottom: 2em;
+}
+
+
+/* ------ Review ------ */
+#review {
+    width: var(--paragraph-width);
+}
+
+#review linear-progress-indicator,
+#review like-bar {
+    display: block;
+    margin-bottom: 2em;
+}
+
+#review-btn > button {
+    width: 100%;
+}
+
+
+/* ------ Settings ------ */
+#settings {
+    padding-bottom: 0;
+    margin-bottom: 3rem;
+}
+
+#delete-btn {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+section[data-tab="settings"] > section {
+    width: var(--paragraph-width);
+}
+
+#delete-dialog-asgmnt-name {
+    font-weight: bold;
+}
+
+#delete-dialog-btn {
+    width: 100%;
+    margin-top: .5em;
+}

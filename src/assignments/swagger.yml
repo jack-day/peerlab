@@ -1,0 +1,260 @@
+paths:
+  /classes/{class}/assignments:
+    get:
+      summary: Get all assignments of a class
+      tags:
+        - assignments
+      parameters:
+        - in: path
+          name: class
+          schema:
+            type: string
+          required: true
+          description: Class short name
+      responses:
+        '200':
+          description: Array of assignments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+        '404':
+          description: Class doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+    post:
+      summary: Create a new assignment
+      tags:
+        - assignments
+      parameters:
+        - in: path
+          name: class
+          schema:
+            type: string
+          required: true
+          description: Class short name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Assignment Request Body'
+      responses:
+        '201':
+          description: Assignment successfully created
+        '400':
+          description: Invalid Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        '404':
+          description: Class doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+  /classes/{class}/assignments/{asgmnt}:
+    get:
+      summary: Get an assignment
+      tags:
+        - assignments
+      parameters:
+        - in: path
+          name: class
+          schema:
+            type: string
+          required: true
+          description: Class short name
+        - in: path
+          name: asgmnt
+          schema:
+            type: string
+          required: true
+          description: Assignment short name
+      responses:
+        '200':
+          description: Assignment data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+        '404':
+          description: Class or assignment doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+    put:
+      summary: Update an assignment
+      tags:
+        - assignments
+      parameters:
+        - in: path
+          name: class
+          schema:
+            type: string
+          required: true
+          description: Class short name
+        - in: path
+          name: asgmnt
+          schema:
+            type: string
+          required: true
+          description: Assignment short name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Assignment Request Body'
+      responses:
+        '200':
+          description: Assignment updated
+        '400':
+          description: Invalid Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        '404':
+          description: Class or assignment doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+    delete:
+      summary: Delete an assignment
+      tags:
+        - assignments
+      parameters:
+        - in: path
+          name: class
+          schema:
+            type: string
+          required: true
+          description: Class short name
+        - in: path
+          name: asgmnt
+          schema:
+            type: string
+          required: true
+          description: Assignment short name
+      responses:
+        '200':
+          description: Assignment deleted
+        '400':
+          description: User is not the class owner
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+        '404':
+          description: Class or assignment doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+  /classes/{class}/assignments/{asgmnt}/peer-work:
+    get:
+      summary: Get a peer's work to review
+      description: Get a random work submission from peer's for the assignment to review
+      tags:
+        - assignments
+      parameters:
+        - in: path
+          name: class
+          schema:
+            type: string
+          required: true
+          description: Class short name
+        - in: path
+          name: asgmnt
+          schema:
+            type: string
+          required: true
+          description: Assignment short name
+      responses:
+        '200':
+          description: Work data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+        '404':
+          description: Class or assignment doesn't exist or the user doesn't have access to it
+        $import: swagger/responses.yml
+components:
+  schemas:
+    Assignment Request Body:
+      type: object
+      required:
+        - shortName
+        - name
+        - anonymous
+        - ratingMax
+      properties:
+        shortName:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        anonymous:
+          type: boolean
+        minReviews:
+          type: number
+          minimum: 1
+        ratingMax:
+          type: number
+          minimum: 1
+        deadline:
+          type: string
+          format: date-time
+        reviewsDeadline:
+          type: string
+          format: date-time
+    Assignment:
+      type: object
+      required:
+        - shortName
+        - name
+        - anonymous
+        - minReviews
+        - ratingMax
+        - workUUID
+        - totalSubmissions
+        - peersReviewed
+        - totalReviewLikes
+        - totalReviewDislikes
+      properties:
+        shortName:
+          type: string
+          description: Unique identifier of assignment
+        name:
+          type: string
+        description:
+          type: string
+        anonymous:
+          type: boolean
+          description: If work should be anonymous when reviewed
+        minReviews:
+          type: number
+        ratingMax:
+          type: number
+        deadline:
+          type: string
+          format: date-time
+          description: Submission deadline
+        reviewsDeadline:
+          type: string
+          format: date-time
+          description: Deadline for reviews
+        isClassOwner:
+          type: boolean
+          description: True if the authenticated user is the owner of the assignment's class
+        workUUID:
+          type: string
+          format: uuid
+          description: UUID of work submission
+        totalSubmissions:
+          type: number
+          description: Total student work submissions for the assignment
+        peersReviewed:
+          type: number
+          description: Number of completed peer work reviews
+        totalReviewLikes:
+          type: number
+          description: Total likes received on peer work reviews
+        totalReviewDislikes:
+            type: number
+            description: Total dislikes received on peer work reviews

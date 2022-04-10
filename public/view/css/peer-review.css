@@ -1,0 +1,116 @@
+@import url('/css/main.css');
+
+main {
+    width: var(--paragraph-width);
+    max-width: var(--content-max-width);
+    padding-top: 3rem;
+    margin: 0 auto;
+}
+
+
+/* ------ Header ------ */
+#title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#title > h1 {
+    margin: 0;
+}
+
+#title > linear-progress-indicator {
+    margin-top: .25em;
+}
+
+#short-name {
+    margin-top: .25em;
+}
+
+@media only screen and (max-width: 767px) {
+    #title > h1 {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* ------ Work ------ */
+#work {
+    display: grid;
+    grid-template-columns: 5em auto;
+    grid-template-rows: 1fr 1fr;
+    justify-content: start;
+    align-items: center;
+    margin: .5em 0 2em;
+}
+
+#work.anonymous {
+    display: block;
+}
+
+#peer-avatar {
+    grid-row: 1 / 3;
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#peer-name {
+    margin: 0;
+}
+
+#work-link {
+    display: flex;
+}
+
+#work-link::before {
+    content: '';
+    width: 1.25em;
+    height: 1.25em;
+    margin-right: .5em;
+    background: url(assignment.css) no-repeat center center;
+    background-size: contain;
+    background-image: url(/assets/icons/link.svg);
+    filter: var(--svg-primary);
+}
+
+
+/* ------ Form ------ */
+review-form {
+    display: block;
+}
+
+#rating-wrap {
+    display: flex;
+    align-items: center;
+}
+
+#rating-max {
+    margin-left: 1em;
+}
+
+
+/* ------ Review Complete ------ */
+.review-complete {
+    margin-top: 5em;
+    text-align: center;
+}
+
+.review-complete .btn-container {
+    margin-top: 1.5em;
+}
+
+.review-complete .btn-container > button:nth-child(2) {
+    margin-left: .5em;
+}
+
+@media only screen and (max-width: 767px) {
+    .review-complete .btn-container button {
+        width: 100%;
+    }
+
+    .review-complete .btn-container > button:nth-child(2) {
+        margin-top: 1em;
+        margin-left: 0;
+    }
+}

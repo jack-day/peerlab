@@ -1,0 +1,15 @@
+@import url('/css/main.css');
+
+form {
+    max-width: var(--content-max-width);
+    padding: 3rem 0 5rem 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+h3 {
+    margin: 0 0 2rem;
+    text-align: center;
+}

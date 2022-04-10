@@ -1,0 +1,14 @@
+{
+    "production": {
+        "dbName": "peerlab",
+        "logLevel": "info"
+    },
+    "development": {
+        "dbName": "peerlab",
+        "logLevel": "error"
+    },
+    "test": {
+        "dbName": "peerlab_test",
+        "logLevel": "info"
+    }
+}

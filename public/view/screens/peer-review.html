@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeerLab - Peer Review</title>
+    <link href="/assets/img/logo.svg" rel="icon">
+    <link href="/view/css/peer-review.css" rel="stylesheet">
+    <script src="/components/site-header/index.js" type="module"></script>
+    <script src="/components/async.js" type="module"></script>
+    <script src="/view/js/peer-review.js" type="module"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <await-async>
+        <main>
+            <header>
+                <div id="title">
+                    <h1>Review a peer</h1>
+                </div>
+                <h3 id="short-name" class="subtitle"></h3>
+            </header>
+        </main>
+    </await-async>
+    <template id="review-template">
+        <section>
+            <label>View their work</label>
+            <section id="work">
+                <img id="peer-avatar">
+                <p id="peer-name"></p>
+                <a id="work-link" href="#" target="_blank"></a>
+            </section>
+        </section>
+        <form>
+            <label>Rating
+                <div id="rating-wrap">
+                    <input id="rating" type="number">
+                    <p id="rating-max"></p>
+                </div>
+            </label>
+            <label>Feedback
+                <textarea id="feedback" rows="3"></textarea>
+            </label>
+            <button id="complete" type="button">Complete Review</button>
+        </form>
+    </template>
+</body>

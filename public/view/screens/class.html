@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeerLab - View Class</title>
+    <link href="/assets/img/logo.svg" rel="icon">
+    <link href="/view/css/class.css" rel="stylesheet">
+    <script src="/components/site-header/index.js" type="module"></script>
+    <script src="/components/async.js" type="module"></script>
+    <script src="/components/tabs.js" type="module"></script>
+    <script src="/components/masonry-grid.js" type="module"></script>
+    <script src="/components/site-dialog.js" type="module"></script>
+    <script src="/view/js/class.js" type="module"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <await-async>
+        <main>
+            <section id="details" class="content-width">
+                <img id="avatar">
+                <section>
+                    <header>
+                        <h1 id="name"></h1>
+                        <h3 id="owner" class="chip">Owner</h3>
+                    </header>
+                    <h2 id="short-name" class="subtitle"></h2>
+                    <p id="description"></p>
+                </section>
+            </section>
+            <fixed-tabs>
+                <section data-tab="assignments">
+                    <section id="new-assignment">
+                        <a id="new-assignment-btn">
+                            <button>+ New Assignment</button>
+                        </a>
+                        <hr>
+                    </section>
+                    <masonry-grid id="assignments" data-columns="2"></masonry-grid>
+                </section>
+                <section id="members" data-tab="members">
+                    <section id="invite-members">
+                        <button id="invite-btn">+ Invite Members</button>
+                        <dialog id="invite-dialog" is="site-dialog">
+                            <h2>Invite Link</h2>
+                            <input id="invite-input" type="text">
+                            <p>Invite link will expire in 7 days</p>
+                            <button id="invite-copy-btn">Copy</button>
+                        </dialog>
+                    </section>
+                    <dialog id="remove-member" is="site-dialog">
+                        <h2>Remove Member?</h2>
+                        <p>Are you sure you want to remove this member?</p>
+                        <button class="delete">Yes, Remove Them</button>
+                    </dialog>
+                </section>
+                <section data-tab="settings">
+                    <form id="avatar-settings">
+                        <h2>Update Avatar</h2>
+                        <label>Avatar
+                            <input id="avatar-input" type="file" accept="image/png,image/jpeg">
+                        </label>
+                        <button id="save-avatar-btn" type="button">Save Avatar</button>
+                    </form>
+                    <form id="settings">
+                        <h2>Update Class</h2>
+                        <label>Class Name
+                            <input id="class-name-input" type="text" autocomplete="off">
+                        </label>
+                        <label>Short Name
+                            <input id="short-name-input" type="text" aria-label="Short Name">
+                            <p>Must be lowercase and spaces replaced with hyphens ' - ', for example: 'short-name'</p>
+                        </label>
+                        <label>Description
+                            <textarea id="description-input" rows="3" data-optional></textarea>
+                        </label>
+                        <button id="save-btn" type="button">Save Changes</button>
+                    </form>
+                    <section>
+                        <h2>Delete Class</h2>
+                        <button id="delete-btn" class="delete" type="button">Delete Class</button>
+                        <dialog id="delete-dialog" is="site-dialog">
+                            <h2>Delete class permanently?</h2>
+                            <p>This cannot be undone. You will delete <span id="delete-dialog-class-name"></span> and all of it's assignments, work submissions and reviews forever.</p>
+                            <p>Are you sure you want to <span class="error">permanently delete</span> this class?</p>
+                            <button id="delete-dialog-btn" class="delete">Yes, Delete It</button>
+                        </dialog>
+                    </section>
+                </section>
+            </fixed-tabs>
+        </main>
+    </await-async>
+</body>

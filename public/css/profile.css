@@ -1,0 +1,90 @@
+@import url('main.css');
+
+
+/* ------ Details ------ */
+#details {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: var(--content-width);
+    margin: 3rem auto;
+}
+
+#avatar {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 2rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#name {
+    margin: 0;
+}
+
+#sign-out {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#sign-out h3 {
+    margin: 0;
+}
+
+#sign-out::after {
+    content: '';
+    width: 1.25em;
+    height: 1.25em;
+    margin-left: .5em;
+    background: url('/assets/icons/logout.svg') no-repeat center center;
+    background-size: contain;
+    filter: var(--svg-primary);
+}
+
+@media only screen and (min-width: 768px) {
+    #sign-out {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+
+/* ------ Stats ------ */
+#stats {
+    width: var(--paragraph-width);
+}
+
+#stats linear-progress-indicator {
+    display: block;
+    margin-bottom: 2em;
+}
+
+#work-stats {
+    margin-bottom: 3em;
+}
+
+
+/* ------ Account ------ */
+section[data-tab="account"] > form {
+    margin: 0 0 2em 0;
+}
+
+section[data-tab="account"] > section {
+    width: var(--paragraph-width);
+}
+
+#delete-btn {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+#delete-dialog h2 {
+    margin-top: 0;
+}
+
+#delete-dialog-btn {
+    width: 100%;
+    margin-top: .5em;
+}

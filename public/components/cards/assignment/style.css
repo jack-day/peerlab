@@ -1,0 +1,107 @@
+@import url('/components/cards/main.css');
+
+#name {
+    margin: 0;
+    font-size: 2rem;
+}
+
+#short-name {
+    margin: 0 0 .5rem 0;
+}
+
+#deadline::before,
+#reviews-deadline::before,
+#status::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    margin-right: .25em;
+    background: url('') no-repeat center center;
+    background-size: contain;
+    filter: var(--svg-text);
+}
+
+#deadlines {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#deadline,
+#reviews-deadline,
+#status {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+#deadline,
+#reviews-deadline {
+    margin-top: .5em;
+}
+
+#deadline {
+    margin-right: 2em;
+}
+
+#deadline::before {
+    background-image: url('/assets/icons/alarm.svg');
+}
+
+#reviews-deadline::before {
+    background-image: url('/assets/icons/local-library.svg');
+}
+
+#description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+#stats {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+#status {
+    padding: .5em 1em;
+    margin: 1em 2em 0 0;
+    border-radius: 2em;
+    background-color: var(--border);
+    color: #202020;
+}
+
+#status::before {
+    width: 1.5em;
+    height: 1.5em;
+    background-image: url('/assets/icons/remove.svg');
+    filter: invert(12.5%);
+}
+
+#status.submitted {
+    background-color: var(--done);
+    color: #FFF;
+}
+
+#status.submitted::before {
+    background-image: url('/assets/icons/done.svg');
+    filter: invert(100%);
+}
+
+#status.missed {
+    background-color: var(--error);
+    color: #FFF;
+}
+
+#status.missed::before {
+    background-image: url('/assets/icons/clear.svg');
+    filter: invert(100%);
+}
+
+#stats > linear-progress-indicator {
+    margin-top: 1em;
+}

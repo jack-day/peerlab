@@ -1,0 +1,40 @@
+name: Docs
+
+on:
+  pull_request:
+    branches: [ main, dev ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Setup Node v14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: npm ci && sudo apt install graphviz
+
+      - name: Run Setup
+        run: npm run setup:config
+
+      - name: Generate Documentation
+        run: npm run docs
+          
+      - name: Commit
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: "Docs - Generate Docs"
+          author_name: "Docs Action"
+          add: "docs/*"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

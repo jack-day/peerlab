@@ -1,0 +1,25 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "max-empty-lines": 2,
+        "unit-allowed-list": ["em", "rem", "%", "vw", "vh", "px", "deg", "s", "fr"],
+        "indentation": 4,
+        "number-leading-zero": "never",
+        "color-hex-case": "upper",
+        "no-descending-specificity": null,
+        "selector-list-comma-newline-after": null,
+        "selector-type-no-unknown": null,
+        "comment-empty-line-before": ["always", {
+            "ignore": ["after-comment", "stylelint-commands"]
+        }]
+    },
+    "ignoreFiles": [
+        "**/*.js",
+        "**/*.txt",
+        "**/*.sql",
+        "**/*.yml",
+        "**/*.png",
+        "**/*.jpg",
+        "public/user-content/**/*.*"
+    ]
+}

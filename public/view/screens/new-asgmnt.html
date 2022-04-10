@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeerLab - New Assignment</title>
+    <link href="/assets/img/logo.svg" rel="icon">
+    <link href="/view/css/new-asgmnt.css" rel="stylesheet">
+    <script src="/components/site-header/index.js" type="module"></script>
+    <script src="/components/async.js" type="module"></script>
+    <script src="/view/js/new-asgmnt.js" type="module"></script>
+</head>
+<body>
+    <site-header></site-header>
+    <await-async>
+        <form>
+            <h1>Create a new assignment</h1>
+            <h3 id="class-name" class="subtitle"></h3>
+            <label>Assignment Name
+                <input id="asgmnt-name" type="text" autocomplete="off">
+            </label>
+            <label>Short Name
+                <input id="short-name" type="text" aria-label="Short Name">
+                <p>Must be lowercase and spaces replaced with hyphens ' - ', for example: 'short-name'</p>
+            </label> 
+            <label>Description
+                <textarea id="description" rows="3" data-optional></textarea>
+            </label>
+            <fieldset id="anonymous" class="radios">
+                <legend>Anonymous</legend> 
+                <label>Yes
+                    <input name="anonymous" type="radio" value="true" checked>
+                </label>
+                <label>No
+                    <input name="anonymous" type="radio" value="false">
+                </label>
+            </fieldset>
+            <label>Minimum Reviews
+                <input id="min-reviews" type="number">
+            </label>
+            <label>Review Max Rating
+                <input id="rating-max" type="number">
+            </label>
+            <label>Deadline 
+                <input id="deadline" type="datetime-local" data-optional>
+            </label>
+            <label>Reviews Deadline
+                <input id="reviews-deadline" type="datetime-local" data-optional>
+            </label>
+            <button id="create-btn" type="button">Create Assignment</button>
+        </form>
+    </await-async>
+</body>

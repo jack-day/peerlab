@@ -1,0 +1,71 @@
+@import url('/css/main.css');
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+await-async {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    text-align: center;
+    width: var(--paragraph-width);
+    max-width: var(--content-max-width);
+}
+
+main.show-msg {
+    animation: main-show-msg .3s ease;
+}
+
+main.hide-msg {
+    animation: main-show-msg .3s ease reverse;
+}
+
+@keyframes main-show-msg {
+    from { padding-bottom: 0; }
+    to { padding-bottom: 4em; }
+}
+
+
+#invite-allows {
+    margin: 0 0 1.5em 0;
+}
+
+#avatar {
+    width: 9rem;
+    height: 9rem;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#name {
+    font-size: 2.5rem;
+    margin: .25em 0;
+}
+
+.chip-container {
+    justify-content: center;
+}
+
+.chip {
+    background-color: #DDD;
+    color: var(--text);
+    text-transform: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .chip {
+        background-color: #505050;
+    }
+}
+
+#accept-btn,
+.notice.error {
+    width: 100%;
+    margin-top: 1em;
+}

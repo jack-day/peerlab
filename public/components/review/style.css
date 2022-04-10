@@ -1,0 +1,77 @@
+@import url('/css/main.css');
+
+.review {
+    display: flex;
+}
+
+#avatar {
+    flex: 0 0 4em;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1em;
+}
+
+section > header {
+    display: flex;
+    align-items: baseline;
+}
+
+#name {
+    margin: 0 .3em 0 0;
+}
+
+#create-time {
+    font-size: .8em;
+    margin: 0;
+}
+
+#rating {
+    display: flex;
+    align-items: center;
+    margin: .5em 0;
+}
+
+#rating::before {
+    content: '';
+    width: 1.25em;
+    height: 1.25em;
+    margin-right: .25em;
+    background: url('/assets/icons/bar-chart.svg') no-repeat center center;
+    background-size: contain;
+    filter: var(--svg-text);
+}
+
+#feedback {
+    margin: .5em 0 .75em;
+    white-space: pre-wrap;
+}
+
+#feedback.truncated {
+    margin-bottom: 0;
+}
+
+.read-more {
+    margin-bottom: .75em;
+}
+
+#like-btn,
+#dislike-btn {
+    cursor: pointer;
+}
+
+#like-btn {
+    margin-right: 1em;
+}
+
+#like-btn > img,
+#dislike-btn > img {
+    filter: var(--svg-text);
+    transition: filter .3s ease;
+}
+
+#like-btn.active > img,
+#dislike-btn.active > img {
+    filter: var(--svg-primary);
+}

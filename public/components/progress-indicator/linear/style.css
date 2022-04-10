@@ -1,0 +1,33 @@
+@import url('/css/main.css');
+
+#caption {
+    margin: 0 0 .5em;
+}
+
+#track {
+    position: relative;
+    width: 100%;
+    height: .5em;
+    background-color: var(--border);
+    border-radius: 10em;
+    overflow: hidden;
+}
+
+#indicator {
+    --progress: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--progress);
+    background-color: var(--primary);
+    border-radius: 10em;
+    transition: width 1s ease;
+    animation: grow 1s ease;
+}
+
+@keyframes grow {
+    from { width: 0; }
+    to { width: var(--progress); }
+}
