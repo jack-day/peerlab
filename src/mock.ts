@@ -1,3 +1,9 @@
+/**
+ * @module 
+ * @description Generates default avatars for mock users and classes as they
+ * would've been directly inserted into the database, preventing the web app
+ * from generating them a default avatar.
+ */
 import { QueryResult } from 'pg';
 import pool from 'src/db';
 import { addDefault as addDefaultUserAvatar } from 'src/users/avatars';

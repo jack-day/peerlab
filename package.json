@@ -14,7 +14,7 @@
     "setup:app": "createdb peerlab && psql peerlab < db/init.sql",
     "setup:test": "createdb peerlab_test && psql peerlab_test < db/init.sql",
     "setup": "npm run setup:app && npm run setup:test",
-    "mock": "psql -d peerlab -f db/mock-data.sql && ts-node -r tsconfig-paths/register src/npm/mock.ts",
+    "mock": "psql -d peerlab -f db/mock-data.sql && ts-node -r tsconfig-paths/register src/mock.ts",
     "teardown:user-content": "node src/npm/user-content-teardown.js",
     "teardown": "dropdb peerlab && dropdb peerlab_test && npm run teardown:user-content",
     "docs:typedoc": "typedoc --options typedoc.json",
