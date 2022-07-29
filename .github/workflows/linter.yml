@@ -23,8 +23,8 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Run Setup
-      run: npm run setup:config
+    - name: Setup config
+      run: cp config-default.js config.js
 
     - name: Run Linter
       run: npm run linter:action
