@@ -27,6 +27,11 @@ jobs:
       - name: Run Setup
         run: npm run setup:config
 
+      - name: Remove any stale auto-generated docs
+        run: |
+          rm -r docs/client/*
+          rm -r docs/server/*
+
       - name: Generate Documentation
         run: npm run docs
           
