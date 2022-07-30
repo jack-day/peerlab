@@ -10,4 +10,4 @@ RUN cp -n config-default.js config.js
 
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "demo" ]
