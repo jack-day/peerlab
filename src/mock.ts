@@ -17,9 +17,7 @@ async function addMockUserAvatars() {
     for (const row of rows) {
         const success = await addDefaultUserAvatar(row.uuid);
 
-        if (success) {
-            console.log(`DEFAULT USER AVATAR INSERT ${row.uuid}`);
-        } else {
+        if (!success) {
             console.log(`DEFAULT USER AVATAR FAIL ${row.uuid}`);
         }
     }
@@ -33,15 +31,13 @@ async function addMockClassAvatars() {
     for (const row of rows) {
         const success = await addDefaultClassAvatar(row.shortName);
 
-        if (success) {
-            console.log(`DEFAULT CLASS AVATAR INSERT ${row.shortName}`);
-        } else {
+        if (!success) {
             console.log(`DEFAULT CLASS AVATAR FAIL ${row.shortName}`);
         }
     }
 }
 
-(async () => {
+export async function addMockAvatars(): Promise<void> {
     await addMockUserAvatars();
     await addMockClassAvatars();
-})();
+}

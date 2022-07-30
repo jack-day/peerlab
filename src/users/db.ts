@@ -1,4 +1,7 @@
 import { QueryResult } from 'pg';
+import { readFile } from 'fs/promises';
+import path from 'path';
+import { addMockAvatars } from '../mock';
 import pool from 'src/db';
 import Result from 'src/common/result';
 import logger from 'src/logger';
@@ -68,14 +71,29 @@ export async function existsUUID(uuid: string): Promise<Result<boolean>> {
 /** Insert a new User */
 export async function insert(user: InsertUser): Promise<Result<string>> {
     try {
-        const { rows }: QueryResult<{ uuid: string }> = await pool.query(
+        await pool.query('BEGIN');
+        const { rows }: QueryResult<{ userID: number, uuid: string }> = await pool.query(
             `INSERT INTO usr (email, fname, lname, avatar_mimetype)
-            VALUES ($1, $2, $3, $4) RETURNING uuid`,
+            VALUES ($1, $2, $3, $4) RETURNING userID as "userID", uuid`,
             [user.email, user.fname, user.lname, user.avatarMimetype]
         );
 
+        // Insert mock data in demo mode for the first user 
+        if (rows[0].userID === 1 && process.env.NODE_ENV === 'demo') {
+            const exampleData = await readFile(
+                path.join(process.cwd(), 'db/mock-data.sql'),
+                { encoding: 'utf8' }
+            );
+            await pool.query(exampleData);
+            await pool.query('COMMIT');
+            addMockAvatars(); // This can mess with the transaction so needs to be after commit
+        } else {
+            await pool.query('COMMIT');
+        }
+
         return new Result(true, rows[0].uuid);
     } catch (err) {
+        await pool.query('ROLLBACK');
         logger.error(err);
         return new Result(false);
     }
