@@ -15,6 +15,7 @@ let config: {
         user: string;
         password: string;
     };
+    googleAuthClientId: string;
     logLevel: string;
 };
 

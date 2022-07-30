@@ -8,6 +8,7 @@ export default {
             user: 'postgres',
             password: 'postgres',
         },
+        googleAuthClientId: '19518467849-a7ltiak6hv9bl3b9hm6uih8h93jm5fr5.apps.googleusercontent.com',
         logLevel: 'error',
     },
     production: {
