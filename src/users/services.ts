@@ -108,7 +108,10 @@ export async function updateAvatar(file: Express.Multer.File, uuid: string): Pro
     const staleType = file.mimetype === 'image/png' ? 'image/jpg': 'image/png';
 
     try {
-        await fs.rename(file.path, avatar.getPath(uuid, file.mimetype));
+        // Don't use fs.rename(), causes 'Error: EXDEV: cross-device link not permitted'
+        // when storing files in separate Docker volumes
+        await fs.copyFile(file.path, avatar.getPath(uuid, file.mimetype));
+        await fs.unlink(file.path);
         const mimetypeUpdate = await db.updateAvatarMimetype(file.mimetype, uuid);
 
         if (mimetypeUpdate.ok) {

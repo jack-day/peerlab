@@ -94,7 +94,8 @@ export async function updatePdf(filePath: string, uuid: string): Promise<Result>
     if (filename.ok && filename.value) {
         try {
             await rmPdfs(uuid);
-            await fs.rename(filePath, getPdfPath(uuid, `${filename.value}.pdf`));
+            await fs.copyFile(filePath, getPdfPath(uuid, `${filename.value}.pdf`));
+            await fs.unlink(filePath);
             return new Result(true);
         } catch (e) {
             logger.error(e);

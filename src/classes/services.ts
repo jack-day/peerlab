@@ -153,7 +153,8 @@ export async function updateAvatar(file: Express.Multer.File, className: string)
     if (oldMimetype.ok && oldMimetype.value) {
         try {
             // Update avatar
-            await fs.rename(file.path, avatar.getPath(className, file.mimetype));
+            await fs.copyFile(file.path, avatar.getPath(className, file.mimetype));
+            await fs.unlink(file.path);
             const updated = await db.updateAvatarMimetype(file.mimetype, className);
 
             if (updated.ok) {
