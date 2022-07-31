@@ -21,8 +21,8 @@ services:
     environment:
       DB_HOST: postgres
     volumes:
-      - peerlab:/data
+      - userContent:/app/public/user-content
 
 volumes:
   db: {}
-  peerlab: {}
+  userContent: {}
