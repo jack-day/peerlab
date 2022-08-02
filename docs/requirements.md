@@ -1,4 +1,4 @@
-# Requirements
+# Requirements Specification
 Create a web application that allows university students to share their work for peer review and receive feedback from their peers.
 
 Requirements have been prioritised using MoSCoW Prioritisation. Must-Have and Should-Have requirements will be designed before development begins. Could-Have requirements will be designed and developed iteratively after the Must-Have and Should-Have requirements have been fulfilled.
