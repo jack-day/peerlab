@@ -13,6 +13,7 @@
     --subtitle: #505050;
     --input-bg: #FAFBFC;
     --input-border: #505050;
+    --input-text: #FFF;
     --primary: #3A0088;
     --primary-fg: #FFF;
     --secondary: #00D6CF;
@@ -36,14 +37,17 @@
     :root, :host {
         --bg: #202020;
         --bg-depth: #101010;
+        --border: #404040;
         --text: #FFF;
         --subtitle: #AFAFAF;
+        --input-bg: #303030;
+        --input-text: #FFF;
         --primary: #00D6CF;
         --primary-fg: #202020;
         --secondary: #3A0088;
         --secondary-fg: #FFF;
         --error-text: #FF3A3A;
-        --shadow: #FFFFFF50;
+        --shadow: #AAAAAA50;
         --hover: #404040;
         --svg-text: invert(100%);
         --svg-subtitle: invert(68.5%);
@@ -244,6 +248,7 @@ textarea {
     border: 2px solid var(--input-border);
     border-radius: 5px;
     background-color: var(--input-bg);
+    color: var(--input-text);
     transition: border-color .3s ease;
 }
 
