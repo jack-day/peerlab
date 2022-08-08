@@ -57,6 +57,8 @@ npm start
 
 Once running, it will be reachable at [http://localhost:8080](http://localhost:8080).
 
+It is recommended you use demo mode.
+
 
 ### Demo Mode
 Example data is provided and can be used by running the web app in demo mode.
@@ -67,6 +69,13 @@ To use demo mode, run:
 ```
 npm run demo
 ```
+
+Demo mode disables the implemented Google Cloud API authentication. Google's
+authentication requires test users to be manually added in the Cloud console in
+order for them to use the authentication, which is not feasible in this case.
+Instead, demo mode prompts you for your name and email when you sign up to
+register your account. After this, you can simply just enter your email to log
+in, the name fields will have no effect once you've created your account.
 
 
 ## API Reference
