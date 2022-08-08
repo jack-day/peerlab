@@ -58,7 +58,7 @@
 }
 
 .sign-in-btn {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: stretch;
     margin-top: 2em;
@@ -90,6 +90,47 @@
 .sign-in-btn.error > button {
     background-color: var(--error);
     color: var(--error-fg);
+}
+
+
+/* - Demo - */
+#demo-sign-up {
+    display: none;
+    text-align: left;
+}
+
+#demo-sign-up.show {
+    display: block;
+}
+
+#demo-names {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 2rem;
+    margin-top: 2rem;
+}
+
+#demo-names > label {
+    flex: 1 0 200px;
+}
+
+#demo-email-label > p {
+    margin-bottom: 2rem;
+}
+
+#demo-sign-up > button {
+    width: 100%;
+}
+
+.sign-in-btn.demo > img {
+    display: none;
+}
+
+.sign-in-btn.demo > button {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 

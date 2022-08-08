@@ -9,6 +9,16 @@ export const config = {
 
 export const authorizeConfig = { prompt: 'none', ...config };
 
+/** Retrieves if the app is running in demo mode */
+export async function getIsDemo() {
+    const response = await fetch('/is-demo');
+
+    if (response.ok) {
+        return await response.json();
+    }
+    throw new Error();
+}
+
 /** Add gapi script to the current page and attach an onload function */
 export function addGapi(onload) {
     const currentScript = document.querySelector('script[src="https://apis.google.com/js/platform.js"]');
@@ -38,16 +48,35 @@ function authorizeCallback(response, callback) {
  * Function to be called after authorization, with a response param to handle authorization response
  * @param {boolean} [redirect = true] If the page should be redirected to 404 on authorize fail
 */
-export function authorize(callback, redirect = true) {
-    addGapi(() => {
-        gapi.auth2.authorize(authorizeConfig, (response) => {
-            if (redirect) {
-                authorizeCallback(response, callback);
-            } else {
-                callback(response);
-            }
+export async function authorize(callback, redirect = true) {
+    const isDemo = await getIsDemo();
+
+    if (!isDemo) {
+        addGapi(() => {
+            gapi.auth2.authorize(authorizeConfig, (response) => {
+                response.isDemo = isDemo;
+                if (redirect) {
+                    authorizeCallback(response, callback);
+                } else {
+                    callback(response);
+                }
+            });
         });
-    });
+    } else {
+        const email = document.cookie
+            .split('; ')
+            .find((row) => row.startsWith('PEERLAB_DEMO_EMAIL='))
+            ?.split('=')[1];
+
+        const response = email ? { id_token: email } : { error: new Error() };
+        response.isDemo = isDemo;
+
+        if (redirect) {
+            authorizeCallback(response, callback);
+        } else {
+            callback(response);
+        }
+    }
 }
 
 /**

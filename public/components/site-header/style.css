@@ -87,6 +87,11 @@ nav.signin {
     }
 }
 
+#signin-btn:disabled {
+    cursor: default;
+    opacity: .4;
+}
+
 
 /* ------ Nav ------ */
 nav a {

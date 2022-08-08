@@ -15,6 +15,11 @@ app.use('/', assignments, classes, reviews);
 app.use('/api', api);
 app.use('/api-docs', swagger);
 
+// Allows the client to check if the app is running in demo mode
+app.get('/is-demo', (req, res) => {
+    res.json(process.env.NODE_ENV === 'demo');
+});
+
 app.use((req, res) => res.redirect('/404'));
 app.use(logger.errorHandler());
 
