@@ -1,12 +1,12 @@
 /** @module */
 /* global gapi */
-import { authorize, config as gapiConfig } from '/js/modules/gapi.js';
+import { authorize, config as gapiConfig, getIsDemo } from '/js/modules/gapi.js';
 import { storeIDElements } from '/js/modules/dom.js';
 import initForm, { showError, hideError } from '/js/modules/forms.js';
 import LinearProgress from '/components/progress-indicator/linear/index.js';
 import LikeBar from '/components/like-bar/index.js';
 
-let idToken;
+let idToken, isDemo;
 const el = {};
 
 // Get Profile
@@ -32,8 +32,13 @@ async function getProfile() {
 // --------------------------------------------
 /** Sign the user out and remove gapi authorisation to stop auto login */
 async function signOut() {
-    const googleAuth = gapi.auth2.getAuthInstance();
-    await googleAuth.signOut(true);
+    if (!isDemo) {
+        const googleAuth = gapi.auth2.getAuthInstance();
+        await googleAuth.signOut(true);
+    } else {
+        document.cookie = 'PEERLAB_DEMO_EMAIL=; max-age=0';
+    }
+
     window.location = '/';
 }
 
@@ -178,7 +183,7 @@ function addAccountTab(profile) {
 async function onAuthorize(response) {
     idToken = response.id_token;
     try {
-        await gapi.auth2.init(gapiConfig);
+        if (!isDemo) await gapi.auth2.init(gapiConfig);
         const profile = await getProfile();
 
         if (profile) {
@@ -193,10 +198,18 @@ async function onAuthorize(response) {
     }
 }
 
-function init() {
+async function init() {
     el.async = document.querySelector('await-async');
     el.main = document.querySelector('main');
     storeIDElements(el);
+    
+    try {
+        isDemo = await getIsDemo();
+    } catch (err) {
+        console.log(err);
+        el.async.error();
+    }
+    
     authorize(onAuthorize);
 }
 

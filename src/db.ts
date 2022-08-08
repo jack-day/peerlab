@@ -3,7 +3,10 @@ import config from './config';
 
 /** DB Connection */
 const conn = new Pool({
-    database: config.dbName,
+    host: config.db.host,
+    database: config.db.database,
+    user: config.db.user,
+    password: config.db.password,
     statement_timeout: 5000,
 });
 export default conn;

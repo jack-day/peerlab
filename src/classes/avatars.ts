@@ -54,10 +54,9 @@ export async function addDefault(shortName: string): Promise<boolean> {
 /** Update avatar file with a class's new short name */
 export async function updateShortName(oldName: string, newName: string, mimetype: string): Promise<boolean> {
     try {
-        await fs.rename(
-            getPath(oldName, mimetype),
-            getPath(newName, mimetype)
-        );
+        const oldPath = getPath(oldName, mimetype);
+        await fs.copyFile(oldPath, getPath(newName, mimetype));
+        await fs.unlink(oldPath);
         return true;
     } catch (e) {
         logger.error(e);

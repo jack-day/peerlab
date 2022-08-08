@@ -1,0 +1,5 @@
+/node_modules
+/uploads
+/public/user-content/**/*
+!/public/user-content/**/
+!.gitkeep

@@ -71,7 +71,7 @@ export class SiteHeader extends BetterElement {
     #onAuthorize() {
         return async (response) => {
             if (response.error) {
-                this.#attachSignIn();
+                this.#attachSignIn(response);
             } else {
                 const status = await this.#userRegistered(response.id_token);
                 
@@ -79,8 +79,8 @@ export class SiteHeader extends BetterElement {
                     this.#showNav(response.id_token);
                     this.el.logo.href = '/classes';
                 } else if (status === 204) { // User is not registered
-                    const googleAuth = this.#attachSignIn();
-                    googleAuth.signOut(true);
+                    const googleAuth = this.#attachSignIn(response);
+                    if (googleAuth) googleAuth.signOut(true);
                     this.#signInError('Account Not Found');
                 } else {
                     this.el.signinBtn.remove();
@@ -93,7 +93,13 @@ export class SiteHeader extends BetterElement {
 
     // Sign In Button
     // --------------------------------------------
-    #attachSignIn() {
+    #attachSignIn(gapiResponse) {
+        if (gapiResponse.isDemo) {
+            this.el.signinBtn.classList.remove('loading');
+            this.el.signinBtn.disabled = true;
+            return;
+        }
+
         const googleAuth = gapi.auth2.init(config);
         googleAuth.attachClickHandler(this.el.signinBtn, {},
             (googleUser) => this.#onSignInSuccess(googleAuth, googleUser),
@@ -127,10 +133,13 @@ export class SiteHeader extends BetterElement {
     }
 
     #signInError(msg = 'An Error Occurred') {
+        const wasDisabled = this.el.signinBtn.disabled;
+        this.el.signinBtn.disabled = false;
         this.el.signinBtn.classList.add('error');
         this.el.signinBtn.textContent = msg;
 
         setTimeout(() => {
+            this.el.signinBtn.disabled = wasDisabled;
             this.el.signinBtn.classList.remove('error');
             this.el.signinBtn.textContent = 'Sign In';
         }, 3000);

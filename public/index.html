@@ -14,11 +14,26 @@
     <section id="hero">
         <section>
             <h1>Learn from your peers</h1>
-            <p>Submit work and recieve feedback from your peers.</p>
-            <a class="sign-in-btn">
+            <p id="hero-subtitle">Submit work and recieve feedback from your peers.</p>
+            <a id="sign-up-btn" class="sign-in-btn">
                 <img src="assets/icons/google.svg">
                 <button>Sign up with Google</button>
             </a>
+            <form id="demo-sign-up">
+                <div id="demo-names">
+                    <label>First Name
+                        <input id="demo-first-name" type="text">
+                    </label>
+                    <label>Last Name
+                        <input id="demo-last-name" type="text">
+                    </label>
+                </div>
+                <label  id="demo-email-label">Email
+                    <input id="demo-email" type="email">
+                    <p>Your email is used to identify you. (Doesn't have to be real, or even an email)</p>
+                </label>
+                <button type="button">Sign Up / Sign In</button>
+            </form>
         </section>
         <img id="scroll-btn" src="assets/icons/expand-more.svg"></img>
     </section>
@@ -63,7 +78,7 @@
         <h1>Get your work peer reviewed</h1>
         <a class="sign-in-btn">
             <img src="assets/icons/google.svg">
-            <button>Sign up with Google</button>
+            <button id="last-cta-btn">Sign up with Google</button>
         </a>
     </section>
 </body>

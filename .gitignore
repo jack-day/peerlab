@@ -1,4 +1,12 @@
-node_modules
-/config.json
-uploads
-user-content
+/node_modules
+/config.js
+/uploads
+
+# Ignore all content and sub-dirs in user-content 
+/public/user-content/**/*
+
+# Don't ignore sub-dirs to ensure gitignore searches them
+!/public/user-content/**/
+
+# Don't ignore .gitkeep files
+!.gitkeep
